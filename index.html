@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Rotating Cube Editor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-cube"></i> 3D Rotating Cube Editor</h1>
+            <p class="subtitle">Customize and interact with a 3D cube using CSS transforms</p>
+        </header>
+
+        <main>
+            <div class="editor-container">
+                <div class="cube-section">
+                    <h2><i class="fas fa-cube"></i> 3D Cube Preview</h2>
+                    <div class="scene">
+                        <div id="cube" class="cube">
+                            <div class="face front">FRONT</div>
+                            <div class="face back">BACK</div>
+                            <div class="face right">RIGHT</div>
+                            <div class="face left">LEFT</div>
+                            <div class="face top">TOP</div>
+                            <div class="face bottom">BOTTOM</div>
+                        </div>
+                    </div>
+                    <div class="cube-controls">
+                        <button id="rotate-toggle" class="btn"><i class="fas fa-play"></i> Toggle Auto Rotation</button>
+                        <button id="reset-cube" class="btn secondary"><i class="fas fa-redo"></i> Reset Position</button>
+                        <button id="random-colors" class="btn secondary"><i class="fas fa-random"></i> Random Colors</button>
+                    </div>
+                </div>
+
+                <div class="controls-section">
+                    <h2><i class="fas fa-sliders-h"></i> Cube Controls</h2>
+                    
+                    <div class="control-group">
+                        <h3><i class="fas fa-sync-alt"></i> Rotation Controls</h3>
+                        <div class="control">
+                            <label for="rotateX">X-Axis Rotation: <span id="rotateX-value">0</span>°</label>
+                            <input type="range" id="rotateX" min="0" max="360" value="0" class="slider">
+                        </div>
+                        <div class="control">
+                            <label for="rotateY">Y-Axis Rotation: <span id="rotateY-value">0</span>°</label>
+                            <input type="range" id="rotateY" min="0" max="360" value="0" class="slider">
+                        </div>
+                        <div class="control">
+                            <label for="rotateZ">Z-Axis Rotation: <span id="rotateZ-value">0</span>°</label>
+                            <input type="range" id="rotateZ" min="0" max="360" value="0" class="slider">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <h3><i class="fas fa-expand-alt"></i> Size Controls</h3>
+                        <div class="control">
+                            <label for="cubeSize">Cube Size: <span id="cubeSize-value">200</span>px</label>
+                            <input type="range" id="cubeSize" min="100" max="400" value="200" class="slider">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <h3><i class="fas fa-palette"></i> Face Colors</h3>
+                        <div class="color-controls">
+                            <div class="color-control">
+                                <label for="frontColor">Front</label>
+                                <input type="color" id="frontColor" value="#3498db">
+                            </div>
+                            <div class="color-control">
+                                <label for="backColor">Back</label>
+                                <input type="color" id="backColor" value="#2ecc71">
+                            </div>
+                            <div class="color-control">
+                                <label for="rightColor">Right</label>
+                                <input type="color" id="rightColor" value="#e74c3c">
+                            </div>
+                            <div class="color-control">
+                                <label for="leftColor">Left</label>
+                                <input type="color" id="leftColor" value="#f39c12">
+                            </div>
+                            <div class="color-control">
+                                <label for="topColor">Top</label>
+                                <input type="color" id="topColor" value="#9b59b6">
+                            </div>
+                            <div class="color-control">
+                                <label for="bottomColor">Bottom</label>
+                                <input type="color" id="bottomColor" value="#1abc9c">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-section">
+                <h2><i class="fas fa-code"></i> Generated CSS Code</h2>
+                <div class="code-container">
+                    <pre id="css-code">.cube {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  transition: transform 0.5s;
+}
+
+.cube .face {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 2px solid #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.cube .front  { background-color: #3498db; transform: rotateY(0deg) translateZ(100px); }
+.cube .back   { background-color: #2ecc71; transform: rotateY(180deg) translateZ(100px); }
+.cube .right  { background-color: #e74c3c; transform: rotateY(90deg) translateZ(100px); }
+.cube .left   { background-color: #f39c12; transform: rotateY(-90deg) translateZ(100px); }
+.cube .top    { background-color: #9b59b6; transform: rotateX(90deg) translateZ(100px); }
+.cube .bottom { background-color: #1abc9c; transform: rotateX(-90deg) translateZ(100px); }</pre>
+                </div>
+                <button id="copy-code" class="btn"><i class="far fa-copy"></i> Copy CSS Code</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>3D Rotating Cube Editor | Created with HTML, CSS & JavaScript</p>
+            <p class="instructions">Drag the sliders to rotate the cube. Change colors using the color pickers. Toggle auto-rotation to see the cube in motion.</p>
+        </footer>
+    </div>
+
+    <div id="notification" class="notification">
+        CSS code copied to clipboard!
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
